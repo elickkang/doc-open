@@ -1,0 +1,132 @@
+#MySQL configuration for 72G memory
+[client]
+port = 3306
+socket = /app/data/mysql/3306/mysql.sock
+
+# The MySQL server
+###############Basic##################
+[mysqld]
+server_id=2373306
+port = 3306
+user = mysql
+basedir = /app/mysqlapp/mysql
+datadir = /app/data/mysql/3306/data
+tmpdir =/app/data/mysql/3306/tmp
+socket = /app/data/mysql/3306/mysql.sock
+pid-file=/app/data/mysql/3306/mysqld.pid  
+skip-external-locking
+skip-name-resolve
+default_storage-engine = INNODB
+character-set-server = utf8mb4
+wait_timeout = 3600  
+connect_timeout = 3600
+interactive_timeout = 3600
+back_log = 500   
+event_scheduler = ON
+lower_case_table_names=1
+secure-file-priv=''
+###############binlog##################
+log-bin = /app/data/mysql/3306/mysql-bin
+binlog_format = row
+max_binlog_size = 128M
+binlog_cache_size= 2M
+expire-logs-days = 5
+
+###############replication##################
+slave-net-timeout = 10
+#rpl_semi_sync_master_enabled = 1
+#rpl_semi_sync_master_wait_no_slave = 1
+#rpl_semi_sync_master_timeout = 1000
+#rpl_semi_sync_master_slave_enable = 1
+skip-slave-start
+log_slave_updates = 1
+relay_log_recovery = 1
+
+###############slow log##################   
+slow_query_log = 1
+slow_query_log_file = /app/data/mysql/3306/mysql.slow
+long_query_time = 2
+
+###############error log################## 
+log-error = /app/data/mysql/3306/error.log
+
+###############per_thread_buffers##################
+max_connections = 3000   
+max_user_connections = 1000   
+max_connect_errors = 10000   
+key_buffer_size = 64M 
+max_allowed_packet = 128M  
+table_open_cache = 6144
+table_definition_cache = 4096
+sort_buffer_size = 2M  
+read_buffer_size = 1M  
+read_rnd_buffer_size = 16M   
+join_buffer_size = 2M   
+tmp_table_size = 256M   
+max_heap_table_size = 256M
+query_cache_type = 0
+query_cache_size = 0   
+bulk_insert_buffer_size = 64M   
+thread_cache_size = 300   
+thread_stack = 256K  
+
+###############InnoDB##################
+innodb_data_home_dir = /app/data/mysql/3306/data
+innodb_log_group_home_dir = /app/data/mysql/3306/logs
+innodb_data_file_path = ibdata1:1G;ibdata2:1G:autoextend 
+innodb_buffer_pool_size = 8G
+innodb_buffer_pool_instances = 8
+innodb_log_file_size = 1024M   
+innodb_log_buffer_size = 64M  
+innodb_log_files_in_group = 3   
+innodb_flush_log_at_trx_commit = 2   
+innodb_lock_wait_timeout = 10  
+innodb_sync_spin_loops = 40
+innodb_max_dirty_pages_pct = 30   
+innodb_support_xa = 1
+innodb_thread_concurrency = 0
+innodb_thread_sleep_delay = 500
+innodb_thread_concurrency = 5000
+log_bin_trust_function_creators = 1
+innodb_flush_method = O_DIRECT
+innodb_file_per_table = 1   
+innodb_read_io_threads = 16   
+innodb_write_io_threads = 16
+innodb_io_capacity = 2000
+innodb_file_format = Barracuda
+innodb_purge_threads = 1
+innodb_purge_batch_size = 300
+innodb_old_blocks_pct = 75
+innodb_change_buffering = all
+innodb_change_buffer_max_size=25
+transaction_isolation = READ-COMMITTED
+
+###############Addtional parameter##################
+sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
+
+show_compatibility_56=1
+group_concat_max_len=4294967295
+
+
+[mysqldump]
+quick
+max_allowed_packet = 128M
+
+
+[mysql]
+no-auto-rehash
+no-beep
+default-character-set=utf8mb4
+
+[myisamchk]
+key_buffer_size = 64M 
+sort_buffer_size = 256K
+read_buffer = 2M
+write_buffer = 2M
+
+[mysqlhotcopy]
+interactive-timeout
+
+[mysqld_safe]
+open_files_limit    = 28192
+
