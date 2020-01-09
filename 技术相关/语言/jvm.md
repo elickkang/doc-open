@@ -93,7 +93,7 @@
 
      CMS是不会整理堆碎片的，因此为了防止堆碎片引起full gc，通过会开启CMS阶段进行合并碎片选项：XX:+UseCMSCompactAtFullCollection
 
-  - **XX:+UseCMSCompactAtFullCollection**
+  - **-XX:LargePageSizeInBytes=128m**
 
     参加 jvm-大内存分页.md
 
