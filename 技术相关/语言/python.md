@@ -44,6 +44,16 @@
     1. pip config set global.index-url http://yum17.int.sfdc.com.cn/pypi/root/pypi/+simple/
     2. pip config set global.trusted-host yum17.int.sfdc.com.cn
 
+- ***conda 镜像配置***
+
+  - 清华源
+
+    - conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
+      conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge 
+      conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/msys2/
+- 设置搜索时显示通道地址
+      conda config --set show_channel_urls yes
+  
 - ***全局变量 global***
 
   ```shell
